@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Final Project JavaScript Advanced</title>
+	<link href="https://fonts.googleapis.com/css?family=Lacquer%7cMontserrat:400,700&display=swap" rel="stylesheet">
+	<style>
+		body{
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+			background-image: url(images/background.jpg);
+			background-size: cover;
+			background-position: center;
+			/* background-color: #030; */
+			color: #ccc;
+			font-family: Montserrat, Arial, Helvetica, sans-serif;
+		}
+		h2{
+			font-weight: 700;
+		}
+		span{
+			font-family: Lacquer, Arial, Helvetica, sans-serif;
+			color: #d55;
+		}
+		#wrapper{
+			width: 960px;
+			margin: 0px auto;
+			text-align: center;
+			/* background-color: #aaf; */
+			padding-top: 1px;
+			padding-bottom: 0px;
+		}
+		#username{
+			text-transform: capitalize;
+		}
+		#drop_container,
+		#drop_container2{
+			height: 300px;
+			position: relative;
+			
+		}
+		.section{
+			width: 100%;
+			background-color: rgba(50, 50, 50, 1);
+			padding: 10px;
+			margin: 20px 0px;
+			box-sizing: border-box;
+			border-radius: 15px;
+			box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+		}
+		.shadow1{
+			box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+		}
+		.food{
+			width: 150px;
+			height: 150px;
+			background-color: #ccc;
+			box-sizing: border-box;
+			position: absolute;
+			top: 95px;
+			transition: all 0.2s ease;
+			border-radius: 10px;
+		}
+		.food:hover{
+			transform: translate(50px,-20px) rotate(20deg);
+			background-color: rgba(0,0,0,0);
+			box-shadow: 5px 5px 5px rgba(0,0,0,0);
+
+			/* transform: translate(3px,-3px); */
+
+		}
+		#burger{
+			background-image: url(images/burgers.png);
+			background-size: cover;
+			left: 40px;
+		}
+		#banana{
+			background-image: url(images/bananas.png);
+			background-size: cover;
+			left: 240px;
+		}
+		#watermelon{
+			background-image: url(images/watermelons.png);
+			background-size: cover;
+			left: 440px;
+		}
+		#basket{
+			width: 180px;
+			height: 180px;
+			border-radius: 10px;
+			background-image: url(images/basket.jpg);
+			background-size: cover;
+			box-sizing: border-box;
+			position: absolute;
+			top: 80px;
+			left: 740px;
+		}
+		#beginner{
+			background-image: url(images/beginner.png);
+			background-size: cover;
+			left: 40px;
+		}
+		#intermediate{
+			background-image: url(images/intermediate.png);
+			background-size: cover;
+			left: 240px;
+		}
+		#expert{
+			background-image: url(images/expert.png);
+			background-size: cover;
+			left: 440px;
+		}
+		#ring{
+			width: 180px;
+			height: 180px;
+			border-radius: 10px;
+			background-image: url(images/ring.jpg);
+			background-size: cover;
+			box-sizing: border-box;
+			position: absolute;
+			top: 80px;
+			left: 740px;
+		}
+		.clear{
+			clear: both;
+		}
+		button{
+			background-color: rgba(50, 50, 50, 1);
+			box-shadow: 7px 7px 7px rgba(0,0,0,0.8);
+			border-radius: 10px;
+			padding: 20px 30px;
+			font-size: 1.6em;
+			text-transform: uppercase;
+			font-family:  Lacquer, Arial, Helvetica, sans-serif;
+			letter-spacing: 0.1em;
+			border: none;
+			color: #ccc;
+			transition: all 0.1s ease;
+		}
+		button:hover{
+			transform: translate(2px, 2px);
+			box-shadow: 4px 4px 4px rgba(0,0,0,0.8);
+		}
+		canvas{
+			margin-bottom: 20px;
+		}
+		
+	</style>
+</head>
+<!--
+
+   ALEXAN    DR         PASKOALE   XA     ND    RPASKO    AL    EX   ANDRPA     SKOALEX 
+  AL    EX   AN         DR          PA   SK    OA    LE   XAN   DR   PA   SK    OA    LE
+  AL    EX   AN         DR           PA SK     OA    LE   XAND  RP   AS    KO   AL    EX
+  ALEXANDR   PA         SKOALEXA      NDR      PASKOALE   XA ND RP   AS    KO   ALEXAND
+  AL    EX   AN         DR           PA SK     OA    LE   XA  NDRP   AS    KO   AL  EX 
+  AL    EX   AN         DR          PA   SK    OA    LE   XA   NDR   PA   SK    OA   LE
+  AL    EX   ANDRPASK   OALEXAND   RP     AS   KO    AL   EX    AN   DRPASK     OA    LE
+
+
+  ALEXAND     RPASKO     ALEXAND   RP    AS    KOALEX
+  AL    EX   AN    DR   PA         SK   OA    LE    XA
+  AL    EX   AN    DR   PA         SK  OA     LE    XA 
+  ALEXAND    RP    AS    KOALEX    ANDRP      AS    KO
+  AL         EXANDRPA         SK   OA  LE     XA    ND
+  AL         EX    AN         DR   PA   SK    OA    LE
+  AL         EX    AN   DRPASKO    AL    EX    ANDRPA
+ 
+id="Alexandr_Pasko_Web_Development_Diploma_2019";
+font-family: "ALEXANDR_PASKO", "no_need_backup_runs_everywhere";
+Cool font, hey?
+-->
+<body>
+	
+	<div id="wrapper">
+
+		<div class="section">
+			<h1>Hi <span id="username">Stranger</span>, Welcome to The World of Games!</h1>
+		</div>
+		
+		<div id="drop_container" class="section">
+
+			<h2>First, choose your favourite food and place it into the basket</h2>
+
+			<div id="burger" class="food shadow1" draggable="true" ondragstart="dragIt(event);"></div>
+			<div id="banana" class="food shadow1" draggable="true" ondragstart="dragIt(event);"></div>
+			<div id="watermelon" class="food shadow1" draggable="true" ondragstart="dragIt(event);"></div>
+			<div id="basket" class="shadow1" ondragover="allowDrop(event);" ondrop="dropIt(event);"></div>
+			<div class="clear"></div>
+
+		</div>
+
+		<div id="drop_container2" class="section">
+
+			<h2>Now choose a player (speed). Beginner, Intermediate or Expert?</h2>
+
+			<div id="beginner" class="food shadow1" draggable="true" ondragstart="dragIt(event);"></div>
+			<div id="intermediate" class="food shadow1" draggable="true" ondragstart="dragIt(event);"></div>
+			<div id="expert" class="food shadow1" draggable="true" ondragstart="dragIt(event);"></div>
+			<div id="ring" class="shadow1" ondragover="allowDrop(event);" ondrop="dropIt2(event);"></div>
+			<div class="clear"></div>
+
+		</div>
+
+		<button id="set_storage" onclick="setGame()">Press to Start the Game</button>
+		
+		<div class="section">
+		
+			<h2 id="warning">You must choose a food, a player, and press "Start Game" button</h2>
+			<canvas id="my_canvas" width="600" height="600">
+				Sorry your browser does not support canvas
+			</canvas>
+		</div>
+
+	</div>
+
+	<script>
+		
+		if(localStorage.username != undefined){
+			document.getElementById('username').innerHTML = localStorage.username;
+		}
+
+		if((localStorage.username !== undefined)&&(localStorage.food !== undefined)&&(localStorage.speed !== undefined)&&(localStorage.record !== undefined)){
+        	document.getElementById('warning').innerHTML = "Now go and get as many <span id='food_variable'>" + localStorage.food + "s</span> as you want";
+        }
+		
+
+
+// script for drag and drop
+
+		function dragIt(evt){
+	        evt.dataTransfer.setData("text", evt.target.id);
+	    }
+
+	    function allowDrop(evt){
+	        evt.preventDefault();
+	    }
+
+		// drop function for first set (food) dragable items
+	    function dropIt(evt){
+	        evt.preventDefault();
+	        
+	        var data = evt.dataTransfer.getData('text');
+	        evt.target.appendChild(document.getElementById(data));
+
+	        //change the CSS of the new object
+	        document.getElementById(data).style.top = '10px';
+	        document.getElementById(data).style.left = '10px';
+	        document.getElementById(data).style.backgroundColor = 'rgba(0,0,0,0)';
+	        document.getElementById(data).style.boxShadow = '5px 5px 5px rgba(0,0,0,0)';
+
+	        //prevent players for the "FOOD" drop area and set storage for "FOOD" drop area if correct
+	        if(data === 'burger' || data === 'banana' || data === 'watermelon'){
+	        	localStorage.setItem('food', data);
+	        	localStorage.setItem('username', data + 'lover');
+	        	console.log(localStorage.food);
+	        	console.log(localStorage.username);
+	        }else{
+	        	alert("Sorry wrong destination. Please move the item to the RING");
+	        }
+
+	    }
+
+		// drop function for second set (players) dropable items
+	    function dropIt2(evt){
+	        evt.preventDefault();
+	        var data = evt.dataTransfer.getData('text');
+	        evt.target.appendChild(document.getElementById(data));
+
+	        //change the CSS of the new object
+	        document.getElementById(data).style.top = '10px';
+	        document.getElementById(data).style.left = '10px';
+	        document.getElementById(data).style.backgroundColor = 'rgba(0,0,0,0)';
+	        document.getElementById(data).style.boxShadow = '5px 5px 5px rgba(0,0,0,0)';
+
+	        //prevent food for the "RING" drop area, and set storage for players if correct 
+	        if(data === 'beginner' || data === 'intermediate' || data === 'expert'){
+	        	localStorage.setItem('player', data);
+
+	        	//set speed of the game, depending on what player is chosen
+	        	if(data === 'beginner'){
+	        		localStorage.setItem('speed', 400);
+	        		localStorage.setItem('playerImage', 'beginner');
+	        	}else if(data === 'intermediate'){
+	        		localStorage.setItem('speed', 200);
+	        		localStorage.setItem('playerImage', 'intermediate');
+	        	}else if(data === 'expert'){
+	        		localStorage.setItem('speed', 100);
+	        		localStorage.setItem('playerImage', 'expert');
+	        	}
+
+	        	console.log(localStorage.player);
+	        	console.log(localStorage.speed);
+
+	        }else{
+	        	alert("Sorry wrong destination. Please move the item to the BASKET above");
+	        }
+	        
+
+	        //document.getElementById('username').innerHTML = localStorage.username;
+
+	    }
+
+// function to set the storage and allow the game
+
+		function setGame(e){
+
+			if(localStorage.record > 0){
+				console.log(localStorage.record);
+	        }else{
+	        	localStorage.setItem("record", 0);
+	        }
+			
+			if(localStorage.username !== undefined && localStorage.speed !== undefined){
+				alert('Okey ' + localStorage.username +', now use arrows on your keyboard to navigate a snake');
+			}else{
+				alert('The game will not be available untill you choose a food and a player');
+				return false;
+			}
+	        
+			location.reload();
+			window.scrollTo(0, 2000);
+			
+		}
+
+
+// script for canvas and game
+
+		var canvas = document.getElementById('my_canvas');
+		var ctx = canvas.getContext('2d');
+		
+		// create the unit
+		var box = 30;
+
+		//load images
+		var ground = new Image();
+		ground.src = "images/ground.png";
+
+		var snakeHead = new Image();
+		snakeHead.src = "images/snakehead.png";
+
+		var snakeBack = new Image();
+		snakeBack.src = "images/snakeback.png";
+
+		var foodImg = new Image();
+		foodImg.src = "images/" + localStorage.food + ".png";
+
+		var playerImg = new Image();
+		playerImg.src = "images/" + localStorage.playerImage + ".png";
+
+		//sound effects
+		var eatSound = new Audio();
+		eatSound.src = 'sounds/eat.mp3';
+
+		var turnSound = new Audio();
+		turnSound.src = 'sounds/turn.mp3';
+
+		var gameOverSound = new Audio();
+		gameOverSound.src = 'sounds/gameover.mp3';
+
+		//create a snake
+		var snake = [];
+		snake[0] = {
+			x : 9 * box,
+			y : 10 * box
+		}
+
+		var food = {
+			x : Math.round(Math.random()*17 + 1) * box,
+			y : Math.round(Math.random()*15 + 3) * box
+		}
+
+		//score variable
+		var score = 0;
+
+		//speed variable
+		var speed = (localStorage.speed === undefined) ? 200 : localStorage.speed;
+
+
+		//direction of the snake
+		var d;
+
+		//growing part
+		var newHead;
+
+		//control the snake direction
+		document.addEventListener('keydown',direction);
+
+		function direction(event){
+			
+			if(((event.key == 'ArrowLeft') || (event.key == 'Left')) && (d != 'right')){
+				d = "left";
+				turnSound.play();
+				event.preventDefault();
+			}else if(((event.key == 'ArrowUp') || (event.key == 'Up')) && (d != 'down')){
+				d = "up";
+				turnSound.play();
+				event.preventDefault();
+			}else if(((event.key == 'ArrowRight') || (event.key == 'Right')) && (d != 'left')){
+				d = "right";
+				turnSound.play();
+				event.preventDefault();
+			}else if(((event.key == 'ArrowDown') || (event.key == 'Down')) &&(d != 'up')){
+				d = "down";
+				turnSound.play();
+				event.preventDefault();
+			}
+		}
+
+		//check colision funciton
+		function collision(newHead, snake){
+			for(var i in snake){
+				if(newHead.x == snake[i].x && newHead.y == snake[i].y){
+					return true;
+				}
+			}
+			return false;
+		}
+
+		//draw the game into canvas
+		function draw(){
+
+			ctx.drawImage(ground,0,0);
+
+			//prevent mistakes before local storage is ready
+			if(localStorage.food === undefined || localStorage.record === undefined || localStorage.player === undefined){
+				return false;
+			}
+
+			for(var i = 0; i < snake.length; i ++){
+
+				if(i===0){
+					ctx.drawImage(snakeHead, snake[i].x, snake[i].y);
+				}else{
+					//ctx.fillStyle = (i==0)? "#622" : "#faa";
+					//ctx.fillStyle = "#faa";
+					//ctx.fillRect(snake[i].x, snake[i].y, box, box);
+					ctx.drawImage(snakeBack, snake[i].x, snake[i].y);
+				}
+
+				
+				
+
+				//ctx.strokeStyle = "#622";
+				//ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+			}
+
+			ctx.drawImage(foodImg, food.x, food.y);
+
+			//old head position
+			var snakeX = snake[0].x;
+			var snakeY = snake[0].y;
+
+			
+
+			//define the direction
+			if(d == "left"){
+				snakeX -= box;
+			}else if(d == "up"){
+				snakeY -=box;
+			}else if(d == "right"){
+				snakeX +=box;
+			}else if(d == "down"){
+				snakeY +=box;
+			}
+
+			//if the snake eats the food
+			if(snakeX == food.x && snakeY == food.y){
+				score ++;
+				eatSound.play();
+				food = {
+					x : Math.round(Math.random()*17 + 1) * box,
+					y : Math.round(Math.random()*15 + 3) * box
+				}
+
+			}else{
+				//remove the tail
+				snake.pop();
+			}
+
+			//add new head
+			newHead = {
+				x : snakeX,
+				y : snakeY
+			}
+
+			//game over
+			if((snakeX < box || snakeX > 18*box) || (snakeY < 3*box || snakeY > 18*box) || (collision(newHead,snake) === true)){
+				gameOverSound.play();
+
+				setTimeout(function (){
+					// alert according to the score result
+					if(score > localStorage.record){
+						alert("Don't get upset " + localStorage.username + ", you have set a new record!")
+					}else{
+						alert("Well " + localStorage.username + ", it could be better.. The record is still: " + localStorage.record);
+					}
+
+					//set new record if score is more than the old one
+					if(score > localStorage.record){
+						localStorage.setItem("record", score);
+					}
+
+					location.reload();
+
+				}, 1000);
+
+				
+				
+
+				
+				clearInterval(game);
+			} 
+
+
+			snake.unshift(newHead);
+			
+			//draw the player as a logo for a game
+			
+			ctx.drawImage(playerImg, 10, -20);
+
+			//show the score
+			ctx.fillStyle = "#fff";
+			ctx.font = "32px Tahoma";
+			ctx.fillText('Score:   ' + score, 420, 35);
+
+			//show the highest result
+			ctx.fillStyle = "#fff";
+			ctx.font = "32px Tahoma";
+			ctx.fillText('Record: ' + localStorage.record, 420, 75);
+		}
+
+		//call draw function every 10 times per second
+		var game = setInterval('draw()',speed);
+
+	</script>
+
+</body>
+</html>
