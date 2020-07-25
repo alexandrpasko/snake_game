@@ -12,4 +12,4 @@ The project is a single interactive web page where a user can choose a game sett
 * Drag and Drop
 
 ## Screenshot:
-![Screenshot of layout](js_canvas.jpg)
+![Screenshot of layout](screenshot.png)
